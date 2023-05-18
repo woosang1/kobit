@@ -4,3 +4,16 @@ plugins {
     id 'com.android.library' version '8.0.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
 }
+
+ext {
+    activity ='1.1.0'
+    hiltVersion = "2.42"
+    retrofit = '2.9.0'
+    okhttp = '4.8.1'
+    gson = '2.8.9'
+    rxandroid ='2.1.1'
+    glide = '4.11.0'
+    glide_okhttp3 = '4.11.0'
+    glide_compiler = '4.11.0'
+    room = '2.2.5'
+}
