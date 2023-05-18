@@ -10,12 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:paddingHorizontal="16dp">
 
-        <View
+        <com.example.kobit.SearchBar
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/black" />
+            android:layout_height="wrap_content" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
@@ -23,6 +22,7 @@
             android:layout_height="50dp"
             app:tabGravity="fill"
             app:tabMode="fixed"
+            android:layout_marginTop="6dp"
             android:background="@color/white"
             app:tabRippleColor="@color/transparent" />
 
