@@ -1,8 +1,10 @@
-package com.example.kobit
+package com.example.kobit.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.kobit.main.like.LikeFragment
+import com.example.kobit.main.market.MarketFragment
 
 
 class MainPagerAdapter (fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {

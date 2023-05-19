@@ -1,4 +1,4 @@
-package com.example.kobit
+package com.example.kobit.views
 
 import android.content.Context
 import android.util.AttributeSet

@@ -1,17 +1,20 @@
-package com.example.kobit
+package com.example.kobit.main
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
+import com.example.kobit.R
 import com.example.kobit.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.viewModels
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private val mainViewModel: MainViewModel by viewModels()
 
     enum class PageType(val tabTitle: String) {
         MARKET("마켓"),
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setBinding()
         setPagerTab()
         setPager()
+        mainViewModel.getMarketDetailAll()
     }
 
     private fun setBinding() {
