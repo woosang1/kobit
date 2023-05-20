@@ -54,7 +54,7 @@ class MarketFragment(
             addItemDecoration(
                 ItemVerticalDecorator(
                     topMargin = 0.dpToPixel(),
-                    bottomMargin = 0.dpToPixel(),
+                    bottomMargin = 6.dpToPixel(),
                     startMargin = 0.dpToPixel(),
                     endMargin = 0.dpToPixel(),
                     firstTopMargin = 0.dpToPixel(),
