@@ -17,6 +17,7 @@ import com.example.kobit.utils.extension.dpToPixel
 import androidx.lifecycle.Observer
 import com.example.kobit.main.MainViewModel
 import com.example.kobit.model.CoinDataModel
+import com.example.kobit.utils.extension.getNumber
 import com.example.kobit.views.MenuClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -87,9 +88,9 @@ class MarketFragment(
                     val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
                     val modelList = adapter.getModelList()
                     // 오름차순
-                    if (value) modelList.sortBy { it.data.last }
+                    if (value) modelList.sortBy { it.data.last.getNumber() }
                     // 내림차순
-                    else modelList.sortByDescending { it.data.last }
+                    else modelList.sortByDescending { it.data.last.getNumber() }
                     adapter.notifyDataSetChanged()
                 }
 
@@ -98,9 +99,9 @@ class MarketFragment(
                     val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
                     val modelList = (binding.recyclerView.adapter as CoinInfoAdapter).getModelList()
                     // 오름차순
-                    if (value) modelList.sortBy { it.data.changePercent }
+                    if (value) modelList.sortBy { it.data.changePercent.getNumber() }
                     // 내림차순
-                    else modelList.sortByDescending { it.data.changePercent }
+                    else modelList.sortByDescending { it.data.changePercent.getNumber() }
                     adapter.notifyDataSetChanged()
                 }
                 @SuppressLint("NotifyDataSetChanged")
@@ -108,9 +109,9 @@ class MarketFragment(
                     val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
                     val modelList = (binding.recyclerView.adapter as CoinInfoAdapter).getModelList()
                     // 오름차순
-                    if (value) modelList.sortBy { it.data.volume }
+                    if (value) modelList.sortBy { it.data.volume.getNumber() }
                     // 내림차순
-                    else modelList.sortByDescending { it.data.volume }
+                    else modelList.sortByDescending { it.data.volume.getNumber() }
                     adapter.notifyDataSetChanged()
                 }
             }

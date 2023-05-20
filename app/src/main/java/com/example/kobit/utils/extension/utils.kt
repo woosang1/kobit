@@ -70,3 +70,8 @@ fun String.makeComma() : String {
         return this
     }
 }
+
+fun String.getNumber() : Double {
+    val amountWithoutCurrency = this.replace("[^\\d.]".toRegex(), "")
+    return amountWithoutCurrency.toDoubleOrNull() ?: 0.0
+}
