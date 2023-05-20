@@ -10,5 +10,7 @@ class NetworkManager @Inject constructor(
 ) {
 
     fun getDetailAll(): Single<RpDetailAllModel> = retrofitClient.get().getVersionRetrofit(NetworkAPI::class.java).getDetailAll()
+    fun getDetail(value: String): Single<RpDetailAllModel> = retrofitClient.get().getVersionRetrofit(NetworkAPI::class.java).getDetail(value)
+
 }
 
