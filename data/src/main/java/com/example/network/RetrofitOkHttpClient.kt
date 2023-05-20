@@ -21,11 +21,6 @@ class RetrofitOkHttpClient {
                         override fun intercept(chain: Interceptor.Chain): Response {
                             val original = chain.request();
                             val request = original.newBuilder()
-//                                .header("X-Naver-Client-Id", "L4ThFnsK2vHZ28_slR03")
-//                                .header(
-//                                    "X-Naver-Client-Secret",
-//                                    "DTsy7xXWn_"
-//                                )
                                 .method(original.method, original.body)
                                 .build();
                             return chain.proceed(request);

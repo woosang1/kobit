@@ -1,5 +1,6 @@
 package com.example.usecase
 
+import com.example.model.CoinListModel
 import com.example.repository.DetailAllRepository
 import javax.inject.Inject
 
@@ -8,7 +9,7 @@ class MarketDetailUseCase @Inject constructor(
 ) {
 
     fun getDetailAll(
-        success: () -> Unit, fail: (String) -> Unit
+        success: (CoinListModel) -> Unit, fail: (String) -> Unit
     ) {
         repository.getDetailAll(
             success = success,
