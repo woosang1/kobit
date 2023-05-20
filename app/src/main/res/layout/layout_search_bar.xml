@@ -4,24 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".main.MainActivity">
 
-    <data></data>
+    <data>
+        <import type="com.example.kobit.utils.extension.FontStyle"/>
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/white_gray_radius6">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="10dp"
             android:layout_gravity="center">
 
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="5dp"
                 android:src="@drawable/ic_launcher_background" />
 
             <EditText
@@ -30,11 +33,13 @@
                 android:layout_height="wrap_content"
                 android:hint="검색"
                 android:textColor="@color/black"
+                android:textColorHint="@color/gray"
                 android:textSize="16dp"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                android:background="@null"/>
 
         </LinearLayout>
     </FrameLayout>

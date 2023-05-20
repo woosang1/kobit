@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+        <import type="com.example.kobit.utils.extension.FontStyle"/>
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -14,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            setFontStyle="@{FontStyle.EXTRA_BOLD.type}"
             android:layout_gravity="center"
             tools:text="마켓" />
     </FrameLayout>

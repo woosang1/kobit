@@ -12,10 +12,14 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import com.example.kobit.application.KobitApplication
 import com.example.kobit.componet.CoinInfoAdapter
 import com.example.kobit.main.market.MarketViewModel
 import com.example.kobit.model.CoinDataModel
+import com.example.kobit.utils.extension.FontStyle
+import com.example.kobit.utils.extension.setFontStyle
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,15 +46,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun setSearchBar(){
+    private fun setSearchBar() {
         binding.searchBar.setListener {
             Log.i("aa", "binding.searchBar.setListener call")
             val keyword = binding.searchBar.getText()
             Log.i("aa", "keyword : ${keyword}")
-            if (keyword.isEmpty() || keyword.isBlank()){
+            if (keyword.isEmpty() || keyword.isBlank()) {
                 mainViewModel.getMarketDetailAll()
-            }
-            else{
+            } else {
                 mainViewModel.getMarketDetail(keyword)
             }
         }
@@ -60,13 +63,27 @@ class MainActivity : AppCompatActivity() {
         binding.tabLayout.apply {
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-//                    tab?.customView?.findViewById<TextView>(R.id.tabText)
-//                        ?.setTextColor(R.color.black)
+                    tab?.customView?.findViewById<TextView>(R.id.tabText)?.apply {
+                        setTextColor(
+                            ContextCompat.getColor(
+                                this@MainActivity,
+                                R.color.black
+                            )
+                        )
+                        setFontStyle(this, FontStyle.EXTRA_BOLD.type)
+                    }
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                    tab?.customView?.findViewById<TextView>(R.id.tabText)
-//                        ?.setTextColor(R.color.alpha_black)
+                    tab?.customView?.findViewById<TextView>(R.id.tabText)?.apply {
+                        setTextColor(
+                            ContextCompat.getColor(
+                                this@MainActivity,
+                                R.color.gray
+                            )
+                        )
+                        setFontStyle(this, FontStyle.BOLD.type)
+                    }
                 }
 
                 override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -94,8 +111,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setObserve(){
-        with(mainViewModel){
+    private fun setObserve() {
+        with(mainViewModel) {
             showToast.observe(this@MainActivity, Observer {
                 Toast.makeText(this@MainActivity, it, Toast.LENGTH_SHORT).show()
             })

@@ -22,9 +22,14 @@ fun String.makePrice() : String {
     // 숫자로 변환 가능한지 확인
     val number = toDoubleOrNull()
     if (number != null) {
-        // 숫자인 경우 형식화
-        val decimal = DecimalFormat("#,###")
-        return decimal.format(number) + "원"
+        val integerFormat = DecimalFormat("#,###")
+        val decimalFormat = DecimalFormat("#.##")
+        // 100 초과 시, 정수 / 아닌 경우는 소수점 2자리 표시
+        return if (number > 100) {
+            integerFormat.format(number.toInt()) + "원"
+        } else {
+            decimalFormat.format(number) + "원"
+        }
     } else {
         // 숫자가 아닌 경우 그대로 반환
         return this

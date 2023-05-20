@@ -15,7 +15,8 @@
         <com.example.kobit.views.SearchBar
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
@@ -31,6 +32,7 @@
             android:id="@+id/tab_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:background="#cccccc" />
 
     </LinearLayout>

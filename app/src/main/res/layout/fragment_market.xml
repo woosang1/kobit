@@ -11,12 +11,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <!--  정보 타이틀  -->
+        <com.example.kobit.views.InfoTitleLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/blue">
+            android:layout_height="wrap_content">
 
-        </LinearLayout>
+        </com.example.kobit.views.InfoTitleLayout>
 
         <!-- 구분바    -->
         <View

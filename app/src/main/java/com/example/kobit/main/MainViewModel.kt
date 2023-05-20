@@ -65,7 +65,7 @@ class MainViewModel @Inject constructor(
                             low = it.low?.makeComma() ?: "",
                             high = it.high?.makeComma() ?: "",
                             volume = it.volume?.roundData() ?: "",
-                            change = it.change?.makeComma() ?: "",
+                            change = it.change?.makePrice() ?: "",
                             changePercent = it.changePercent ?: ""
                         )
                     )

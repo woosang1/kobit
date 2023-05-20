@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="com.example.kobit.utils.extension.FontStyle"/>
+
         <variable
             name="data"
             type="com.example.kobit.model.CoinDataModel.Data" />
@@ -28,21 +30,21 @@
         <!--  가상자산명   -->
         <TextView
             setText="@{data.title}"
+            setFontStyle="@{FontStyle.BOLD.type}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textColor="@color/black" />
 
         <!--  현재가   -->
         <TextView
             setText="@{data.last}"
+            setFontStyle="@{FontStyle.BOLD.type}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -53,32 +55,33 @@
 
             <!--  변동률   -->
             <TextView
-                setText="@{data.changePercent}"
+                setTextWithPercent="@{data.changePercent}"
+                setColorByValue="@{data.changePercent}"
+                setFontStyle="@{FontStyle.BOLD.type}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textSize="14dp" />
+                android:textColor="@color/black" />
 
             <!--  변동가격   -->
             <TextView
                 setText="@{data.change}"
+                setFontStyle="@{FontStyle.BOLD.type}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textSize="14dp" />
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <!--  거래대금   -->
         <TextView
             setText="@{data.volume}"
+            setFontStyle="@{FontStyle.BOLD.type}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textColor="@color/black" />
 
     </LinearLayout>
 </layout>
