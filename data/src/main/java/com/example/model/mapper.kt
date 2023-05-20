@@ -1,6 +1,7 @@
 package com.example.model
 
 import com.example.model.rp.RpDetailAllModel
+import com.example.model.rp.RpDetailModel
 
 fun RpDetailAllModel.mapperToConListModel() : CoinListModel{
     return CoinListModel(
@@ -2079,6 +2080,28 @@ fun RpDetailAllModel.mapperToConListModel() : CoinListModel{
                     )
                 )
             }
+        }
+    )
+}
+
+fun RpDetailModel.mapperToConListModel(title: String) : CoinListModel{
+    return CoinListModel(
+        dataList = ArrayList<CoinListModel.Item>().apply {
+            add(
+                CoinListModel.Item(
+                    title = "${title}/KRW",
+                    timestamp = this@mapperToConListModel.timestamp,
+                    last = this@mapperToConListModel.last,
+                    open = this@mapperToConListModel.open,
+                    bid = this@mapperToConListModel.bid,
+                    ask = this@mapperToConListModel.ask,
+                    low = this@mapperToConListModel.low,
+                    high = this@mapperToConListModel.high,
+                    volume = this@mapperToConListModel.volume,
+                    change = this@mapperToConListModel.change,
+                    changePercent = this@mapperToConListModel.changePercent
+                )
+            )
         }
     )
 }

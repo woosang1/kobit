@@ -32,7 +32,7 @@ class MarketFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         setBinding()
         setRecyclerview()
         return binding.root
@@ -41,7 +41,7 @@ class MarketFragment(
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         getData()
-        observe()
+        setObserve()
     }
 
     private fun setBinding(){
@@ -69,7 +69,7 @@ class MarketFragment(
         mainViewModel.getMarketDetailAll()
     }
 
-    private fun observe(){
+    private fun setObserve(){
         with(mainViewModel){
             coinDataLiveData.observe(viewLifecycleOwner, Observer {
                 if (binding.recyclerView.adapter is CoinInfoAdapter){

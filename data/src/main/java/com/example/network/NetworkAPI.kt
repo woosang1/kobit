@@ -1,6 +1,7 @@
 package com.example.network
 
 import com.example.model.rp.RpDetailAllModel
+import com.example.model.rp.RpDetailModel
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,6 +19,6 @@ interface NetworkAPI {
      */
     @GET("ticker/detailed")
     fun getDetail(
-        @Query("currency_pair") currencyPair: String,
-    ): Single<RpDetailAllModel>
+        @Query("title") currencyPair: String,
+    ): Single<RpDetailModel>
 }

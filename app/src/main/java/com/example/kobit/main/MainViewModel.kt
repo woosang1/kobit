@@ -19,16 +19,33 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     // 코인 정보 조회 성공
-    private val _coinDataLiveData = MutableLiveData<java.util.ArrayList<CoinDataModel.MarketModel>>()
-    val coinDataLiveData: LiveData<java.util.ArrayList<CoinDataModel.MarketModel>> = _coinDataLiveData
+    private val _coinDataLiveData = MutableLiveData<ArrayList<CoinDataModel.MarketModel>>()
+    val coinDataLiveData: LiveData<ArrayList<CoinDataModel.MarketModel>> = _coinDataLiveData
+
+    private val _showToast = MutableLiveData<String>()
+    val showToast: LiveData<String> = _showToast
 
     fun getMarketDetailAll() {
         marketDetailUseCase.getDetailAll(
             success = {
-                Log.i("aa" , "vm getMarketDetailAll success - : ${it.toString()}")
+                Log.i("aa", "vm getMarketDetailAll success - : ${it.toString()}")
                 _coinDataLiveData.postValue(makeMarketModel(it))
             },
             fail = {
+                _showToast.postValue(it)
+            }
+        )
+    }
+
+    fun getMarketDetail(value: String) {
+        marketDetailUseCase.getDetail(
+            value = value,
+            success = {
+                Log.i("aa", "vm getMarketDetailAll success - : ${it.toString()}")
+                _coinDataLiveData.postValue(makeMarketModel(it))
+            },
+            fail = {
+                _showToast.postValue(it)
             }
         )
     }

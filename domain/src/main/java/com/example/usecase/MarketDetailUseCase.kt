@@ -16,4 +16,15 @@ class MarketDetailUseCase @Inject constructor(
             fail = fail
         )
     }
+
+    fun getDetail(
+        value: String,
+        success: (CoinListModel) -> Unit, fail: (String) -> Unit
+    ) {
+        repository.getDetail(
+            value = value,
+            success = success,
+            fail = fail
+        )
+    }
 }
