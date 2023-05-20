@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
+import com.example.kobit.main.market.MarketViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         setBinding()
         setPagerTab()
         setPager()
-        mainViewModel.getMarketDetailAll()
     }
 
     private fun setBinding() {
@@ -57,12 +57,16 @@ class MainActivity : AppCompatActivity() {
     private fun setPager() {
         binding.tabViewPager.apply {
             offscreenPageLimit = 1
-            adapter = MainPagerAdapter(this@MainActivity).apply { setPages(PageType.values()) }
+            adapter = MainPagerAdapter(
+                fragmentActivity = this@MainActivity,
+                mainViewModel = mainViewModel
+            ).apply { setPages(PageType.values()) }
             TabLayoutMediator(binding.tabLayout, this) { tab, position ->
                 tab.customView =
                     (layoutInflater.inflate(R.layout.layout_tab_item, null) as View).apply {
                         findViewById<TextView>(R.id.tabText).run {
-                            text = (binding.tabViewPager.adapter as MainPagerAdapter).getType(position).tabTitle
+                            text =
+                                (binding.tabViewPager.adapter as MainPagerAdapter).getType(position).tabTitle
                         }
                     }
             }.attach()

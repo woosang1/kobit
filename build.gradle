@@ -8,6 +8,7 @@ plugins {
 
 ext {
     activity ='1.1.0'
+    fragment ='1.1.0'
     hiltVersion = "2.42"
     retrofit = '2.9.0'
     okhttp = '4.8.1'

@@ -70,6 +70,8 @@ dependencies {
 
     // activity
     implementation "androidx.activity:activity-ktx:$activity"
+    // fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment"
 
     // RxAndroid
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid"

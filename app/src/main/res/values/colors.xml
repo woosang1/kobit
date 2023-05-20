@@ -5,4 +5,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#E1E1E1</color>
     <color name="transparent">#00000000</color>
+
+    <color name="purple">#B799FF</color>
+    <color name="blue">#ACBCFF</color>
+    <color name="light">#AEE2FF</color>
+    <color name="winter">#E6FFFD</color>
+
 </resources>

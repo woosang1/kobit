@@ -1,6 +1,6 @@
 package com.example.kobit.di
 
-import com.example.repository.DetailAllRepository
+import com.example.repository.DetailAllRepositoryImpl
 import com.example.usecase.MarketDetailUseCase
 import dagger.Module
 import dagger.Provides
@@ -12,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 object UseCaseModule {
 
     @Provides
-    fun provideMarketDetailUseCase(repository: DetailAllRepository) = MarketDetailUseCase(repository)
+    fun provideMarketDetailUseCase(repository: DetailAllRepositoryImpl) = MarketDetailUseCase(repository)
 
 }

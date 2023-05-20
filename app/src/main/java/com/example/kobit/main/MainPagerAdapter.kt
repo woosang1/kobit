@@ -7,7 +7,10 @@ import com.example.kobit.main.like.LikeFragment
 import com.example.kobit.main.market.MarketFragment
 
 
-class MainPagerAdapter (fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class MainPagerAdapter(
+    fragmentActivity: FragmentActivity,
+    private val mainViewModel: MainViewModel
+    ) : FragmentStateAdapter(fragmentActivity) {
 
     private var models = ArrayList<MainActivity.PageType>()
 
@@ -22,7 +25,7 @@ class MainPagerAdapter (fragmentActivity: FragmentActivity) : FragmentStateAdapt
     override fun createFragment(position: Int): Fragment {
         return when (models[position]) {
             MainActivity.PageType.MARKET -> {
-                return MarketFragment()
+                return MarketFragment(mainViewModel)
             }
             MainActivity.PageType.LIKE -> {
                 return LikeFragment()
