@@ -59,14 +59,19 @@ class MainActivity : AppCompatActivity() {
         binding.tabLayout.apply {
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    tab?.customView?.findViewById<TextView>(R.id.tabText)?.apply {
-                        setTextColor(
-                            ContextCompat.getColor(
-                                this@MainActivity,
-                                R.color.black
+                    tab?.let {
+                        tab.customView?.findViewById<TextView>(R.id.tabText)?.apply {
+                            setTextColor(
+                                ContextCompat.getColor(
+                                    this@MainActivity,
+                                    R.color.black
+                                )
                             )
-                        )
-                        setFontStyle(this, FontStyle.EXTRA_BOLD.type)
+                            setFontStyle(this, FontStyle.EXTRA_BOLD.type)
+                        }
+                        if (tab.position == PageType.LIKE.ordinal){
+                            mainViewModel.getModelToRoom()
+                        }
                     }
                 }
 

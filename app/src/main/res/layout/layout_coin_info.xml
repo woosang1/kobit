@@ -23,9 +23,10 @@
         <!--  즐겨찾기 여부   -->
         <ImageView
             android:id="@+id/is_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            setLikeBg="@{data.like}" />
 
         <!--  가상자산명   -->
         <TextView

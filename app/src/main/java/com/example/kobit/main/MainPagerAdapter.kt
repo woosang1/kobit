@@ -28,7 +28,7 @@ class MainPagerAdapter(
                 return MarketFragment(mainViewModel)
             }
             MainActivity.PageType.LIKE -> {
-                return LikeFragment()
+                return LikeFragment(mainViewModel)
             }
         }
     }

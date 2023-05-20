@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kobit.databinding.LayoutCoinInfoBinding
+import com.example.kobit.main.MainViewModel
 import com.example.kobit.model.CoinDataModel
 
-class CoinInfoAdapter : RecyclerView.Adapter<CoinInfoViewHolder>() {
+class CoinInfoAdapter(
+    private val mainViewModel: MainViewModel
+) : RecyclerView.Adapter<CoinInfoViewHolder>() {
 
-//    private var modelList = java.util.ArrayList<CoinDataModel.Data>()
     private var modelList = ArrayList<CoinDataModel>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {
         return CoinInfoViewHolder(
@@ -18,7 +20,8 @@ class CoinInfoAdapter : RecyclerView.Adapter<CoinInfoViewHolder>() {
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            mainViewModel = mainViewModel
         )
     }
 

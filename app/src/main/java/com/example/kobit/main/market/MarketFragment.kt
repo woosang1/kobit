@@ -24,8 +24,6 @@ class MarketFragment(
 ) : Fragment() {
 
 //    private val mainViewModel: MainViewModel by activityViewModels<MainViewModel>()
-    private val marketViewModel: MarketViewModel by viewModels()
-
     private lateinit var binding: FragmentMarketBinding
 
     override fun onCreateView(
@@ -50,7 +48,7 @@ class MarketFragment(
 
     private fun setRecyclerview(){
         binding.recyclerView.apply {
-            adapter = CoinInfoAdapter()
+            adapter = CoinInfoAdapter(mainViewModel)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             addItemDecoration(
                 ItemHorizontalDecorator(

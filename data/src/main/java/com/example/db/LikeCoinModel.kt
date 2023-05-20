@@ -5,8 +5,18 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "likeCoin")
-// TODO: 여기 모델링 해야됨.
 data class LikeCoinModel(
     @PrimaryKey
     val title: String,
+    val timestamp: Long,
+    val last : String,
+    val open: String,
+    val bid: String,
+    val ask: String,
+    val low: String,
+    val high: String,
+    val volume: String,
+    val change: String,
+    val changePercent: String,
+    var isLike: Boolean = false
 ) : Serializable
