@@ -14,10 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.example.kobit.application.KobitApplication
-import com.example.kobit.componet.CoinInfoAdapter
-import com.example.kobit.main.market.MarketViewModel
-import com.example.kobit.model.CoinDataModel
 import com.example.kobit.utils.extension.FontStyle
 import com.example.kobit.utils.extension.setFontStyle
 
@@ -47,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSearchBar() {
-        binding.searchBar.setListener {
+        binding.searchBar.setOnEditorActionListener {
             Log.i("aa", "binding.searchBar.setListener call")
             val keyword = binding.searchBar.getText()
             Log.i("aa", "keyword : ${keyword}")

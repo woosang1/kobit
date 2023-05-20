@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingHorizontal="16dp">
+        android:paddingHorizontal="16dp"
+        android:background="@color/black">
 
         <com.example.kobit.views.SearchBar
             android:id="@+id/search_bar"
@@ -32,8 +33,7 @@
             android:id="@+id/tab_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="#cccccc" />
+            android:layout_gravity="center" />
 
     </LinearLayout>
 </layout>

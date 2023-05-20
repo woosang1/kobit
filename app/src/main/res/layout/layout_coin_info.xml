@@ -17,7 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/white_gray_radius6"
+        android:background="@drawable/white_black_radius6"
         android:orientation="horizontal">
 
         <!--  즐겨찾기 여부   -->
