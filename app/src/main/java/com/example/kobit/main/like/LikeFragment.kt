@@ -9,10 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kobit.componet.CoinInfoAdapter
 import com.example.kobit.databinding.FragmentLikeBinding
-import com.example.kobit.databinding.FragmentMarketBinding
 import com.example.kobit.main.MainViewModel
 import com.example.kobit.model.CoinDataModel
-import com.example.kobit.utils.ItemHorizontalDecorator
+import com.example.kobit.utils.ItemVerticalDecorator
 import com.example.kobit.utils.extension.dpToPixel
 
 class LikeFragment(
@@ -44,13 +43,13 @@ class LikeFragment(
             adapter = CoinInfoAdapter(mainViewModel)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             addItemDecoration(
-                ItemHorizontalDecorator(
+                ItemVerticalDecorator(
                     topMargin = 0.dpToPixel(),
                     bottomMargin = 0.dpToPixel(),
                     startMargin = 0.dpToPixel(),
-                    endMargin = 8.dpToPixel(),
-                    firstStartMargin = 0.dpToPixel(),
-                    lastEndMargin = 0.dpToPixel()
+                    endMargin = 0.dpToPixel(),
+                    firstTopMargin = 0.dpToPixel(),
+                    lastBottomMargin = 0.dpToPixel()
                 )
             )
         }

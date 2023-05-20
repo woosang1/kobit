@@ -25,6 +25,7 @@
             android:layout_height="50dp"
             app:tabGravity="fill"
             app:tabMode="fixed"
+            app:tabIndicatorHeight="6dp"
             android:layout_marginTop="6dp"
             android:background="@color/white"
             app:tabRippleColor="@color/transparent" />
