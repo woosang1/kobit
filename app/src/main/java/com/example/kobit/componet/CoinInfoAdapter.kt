@@ -33,6 +33,8 @@ class CoinInfoAdapter(
         return modelList.size
     }
 
+    fun getModelList() : ArrayList<CoinDataModel> = modelList
+
     @SuppressLint("NotifyDataSetChanged")
     fun addData(items: ArrayList<CoinDataModel>) {
         modelList.clear()

@@ -8,18 +8,22 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/white"
-        android:paddingTop="15dp">
+        android:layout_marginTop="15dp"
+        >
 
         <!--  가상자산명   -->
         <LinearLayout
+            android:id="@+id/title_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -27,78 +31,94 @@
                 android:layout_gravity="center"
                 android:text="가상자산명"
                 setFontStyle="@{FontStyle.MEDIUM.type}"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="5dp" />
+                android:layout_marginStart="2dp"
+                android:background="@drawable/sort" />
         </LinearLayout>
 
-        <!--  현재가   -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
 
-            <TextView
+            <!--  현재가   -->
+            <LinearLayout
+                android:id="@+id/price_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="현재가"
-                setFontStyle="@{FontStyle.MEDIUM.type}"
-                android:textColor="@color/black"/>
+                android:orientation="horizontal">
 
-            <ImageView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="현재가"
+                    setFontStyle="@{FontStyle.MEDIUM.type}"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/sort" />
+            </LinearLayout>
+
+            <!--  24시간   -->
+            <LinearLayout
+                android:id="@+id/time_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="5dp" />
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="24시간"
+                    setFontStyle="@{FontStyle.MEDIUM.type}"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/sort" />
+            </LinearLayout>
+
+            <!--  거래대금   -->
+            <LinearLayout
+                android:id="@+id/money_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="거래대금"
+                    setFontStyle="@{FontStyle.MEDIUM.type}"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/sort" />
+            </LinearLayout>
+
         </LinearLayout>
-
-        <!--  24시간   -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="24시간"
-                setFontStyle="@{FontStyle.MEDIUM.type}"
-                android:textColor="@color/black"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
-
-        <!--  거래대금   -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="거래대금"
-                setFontStyle="@{FontStyle.MEDIUM.type}"
-                android:textColor="@color/black"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

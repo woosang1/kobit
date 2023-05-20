@@ -1,5 +1,6 @@
 package com.example.kobit.main.market
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.kobit.utils.extension.dpToPixel
 import androidx.lifecycle.Observer
 import com.example.kobit.main.MainViewModel
 import com.example.kobit.model.CoinDataModel
+import com.example.kobit.views.MenuClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +35,7 @@ class MarketFragment(
     ): View {
         setBinding()
         setRecyclerview()
+        setListener()
         return binding.root
     }
 
@@ -63,6 +66,57 @@ class MarketFragment(
         }
     }
 
+    private fun setListener(){
+        binding.infoTitleLayout.setClickListener(
+            menuClickListener = object : MenuClickListener {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun titleClick(value: Boolean) {
+                    if(binding.recyclerView.adapter is CoinInfoAdapter){
+                        val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
+                        val modelList = adapter.getModelList()
+                        // 오름차순
+                        if (value) modelList.sortBy { it.data.title }
+                        // 내림차순
+                        else modelList.sortByDescending { it.data.title }
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+                @SuppressLint("NotifyDataSetChanged")
+                override fun priceClick(value: Boolean) {
+                    val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
+                    val modelList = adapter.getModelList()
+                    // 오름차순
+                    if (value) modelList.sortBy { it.data.last }
+                    // 내림차순
+                    else modelList.sortByDescending { it.data.last }
+                    adapter.notifyDataSetChanged()
+                }
+
+                @SuppressLint("NotifyDataSetChanged")
+                override fun timeClick(value: Boolean) {
+                    val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
+                    val modelList = (binding.recyclerView.adapter as CoinInfoAdapter).getModelList()
+                    // 오름차순
+                    if (value) modelList.sortBy { it.data.changePercent }
+                    // 내림차순
+                    else modelList.sortByDescending { it.data.changePercent }
+                    adapter.notifyDataSetChanged()
+                }
+                @SuppressLint("NotifyDataSetChanged")
+                override fun moneyClick(value: Boolean) {
+                    val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
+                    val modelList = (binding.recyclerView.adapter as CoinInfoAdapter).getModelList()
+                    // 오름차순
+                    if (value) modelList.sortBy { it.data.volume }
+                    // 내림차순
+                    else modelList.sortByDescending { it.data.volume }
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        )
+    }
+
     private fun getData(){
         mainViewModel.getMarketDetailAll()
     }
@@ -71,9 +125,14 @@ class MarketFragment(
         with(mainViewModel){
             coinDataLiveData.observe(viewLifecycleOwner, Observer {
                 if (binding.recyclerView.adapter is CoinInfoAdapter){
-                    (binding.recyclerView.adapter as CoinInfoAdapter).addData(it as ArrayList<CoinDataModel>)
+                    addData(it as ArrayList<CoinDataModel>)
                 }
             })
         }
     }
+
+    private fun addData(value : ArrayList<CoinDataModel>){
+        (binding.recyclerView.adapter as CoinInfoAdapter).addData(value)
+    }
+
 }
