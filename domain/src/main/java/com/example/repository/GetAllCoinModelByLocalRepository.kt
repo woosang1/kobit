@@ -2,6 +2,6 @@ package com.example.repository
 
 import com.example.model.LikeCoinModel
 
-interface GetAllCoinModelInRoomRepository {
+interface GetAllCoinModelByLocalRepository {
     fun getAllData() : ArrayList<LikeCoinModel>
 }

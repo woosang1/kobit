@@ -2,14 +2,14 @@ package com.example.kobit.di
 
 import com.example.db.LikeCoinDao
 import com.example.network.NetworkManager
-import com.example.repository.DeleteCoinModelInRoomRepositoryImpl
-import com.example.repository.DeleteCoinModelInRoomRepository
+import com.example.repository.DeleteCoinModelByLocalRepositoryImpl
+import com.example.repository.DeleteCoinModelByLocalRepository
 import com.example.repository.DetailAllRepository
 import com.example.repository.DetailAllRepositoryImpl
-import com.example.repository.GetAllCoinModelInRoomRepository
-import com.example.repository.GetAllCoinModelInRoomRepositoryImpl
-import com.example.repository.InsertCoinModelInRoomRepository
-import com.example.repository.InsertCoinModelInRoomRepositoryImpl
+import com.example.repository.GetAllCoinModelByLocalRepository
+import com.example.repository.GetAllCoinModelByLocalRepositoryImpl
+import com.example.repository.InsertCoinModelByLocalRepository
+import com.example.repository.InsertCoinModelByLocalRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,13 +26,13 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideGetAllCoinModelInRoomRepository(likeCoinDao: LikeCoinDao) : GetAllCoinModelInRoomRepository = GetAllCoinModelInRoomRepositoryImpl(likeCoinDao)
+    fun provideGetAllCoinModelInRoomRepository(likeCoinDao: LikeCoinDao) : GetAllCoinModelByLocalRepository = GetAllCoinModelByLocalRepositoryImpl(likeCoinDao)
 
     @Provides
     @Singleton
-    fun provideInsertCoinModelInRoomRepository(likeCoinDao: LikeCoinDao) : InsertCoinModelInRoomRepository = InsertCoinModelInRoomRepositoryImpl(likeCoinDao)
+    fun provideInsertCoinModelInRoomRepository(likeCoinDao: LikeCoinDao) : InsertCoinModelByLocalRepository = InsertCoinModelByLocalRepositoryImpl(likeCoinDao)
 
     @Provides
     @Singleton
-    fun provideDeleteCoinModelInRoomRepository(likeCoinDao: LikeCoinDao) : DeleteCoinModelInRoomRepository = DeleteCoinModelInRoomRepositoryImpl(likeCoinDao)
+    fun provideDeleteCoinModelInRoomRepository(likeCoinDao: LikeCoinDao) : DeleteCoinModelByLocalRepository = DeleteCoinModelByLocalRepositoryImpl(likeCoinDao)
 }

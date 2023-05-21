@@ -1,15 +1,15 @@
 package com.example.kobit.model
 
-sealed class CoinDataModel {
+sealed class CoinInfoModel {
     abstract val data: Data
 
     data class MarketModel(
         override val data: Data
-    ) : CoinDataModel()
+    ) : CoinInfoModel()
 
     data class LikeModel(
         override val data: Data
-    ) : CoinDataModel()
+    ) : CoinInfoModel()
 
     data class Data(
         val title: String,

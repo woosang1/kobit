@@ -1,7 +1,6 @@
 package com.example.kobit.main.like
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kobit.componet.CoinInfoAdapter
 import com.example.kobit.databinding.FragmentLikeBinding
 import com.example.kobit.main.MainViewModel
-import com.example.kobit.model.CoinDataModel
+import com.example.kobit.model.CoinInfoModel
 import com.example.kobit.utils.ItemVerticalDecorator
 import com.example.kobit.utils.extension.dpToPixel
 
@@ -60,9 +59,9 @@ class LikeFragment(
 
     private fun setObserve(){
         with(mainViewModel){
-            coinDataByRoomLiveData.observe(viewLifecycleOwner, Observer {
+            coinDataByLocalLiveData.observe(viewLifecycleOwner, Observer {
                 if (binding.recyclerView.adapter is CoinInfoAdapter){
-                    (binding.recyclerView.adapter as CoinInfoAdapter).addData(it as ArrayList<CoinDataModel>)
+                    (binding.recyclerView.adapter as CoinInfoAdapter).addData(it as ArrayList<CoinInfoModel>)
                 }
             })
         }

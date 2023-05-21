@@ -2,9 +2,9 @@ package com.example.repository
 
 import com.example.db.LikeCoinDao
 
-class DeleteCoinModelInRoomRepositoryImpl(
+class DeleteCoinModelByLocalRepositoryImpl(
     private val likeCoinDao: LikeCoinDao,
-    ) : DeleteCoinModelInRoomRepository {
+    ) : DeleteCoinModelByLocalRepository {
 
     override fun deleteModel(title: String) {
         likeCoinDao.deleteItem(title)

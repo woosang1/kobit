@@ -10,7 +10,7 @@
 
         <variable
             name="data"
-            type="com.example.kobit.model.CoinDataModel.Data" />
+            type="com.example.kobit.model.CoinInfoModel.Data" />
 
     </data>
 
@@ -61,14 +61,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:layout_marginEnd="7dp" />
 
             <LinearLayout
                 android:id="@+id/change_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginEnd="7dp" >
 
                 <!--  변동률   -->
                 <TextView
@@ -78,9 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="7dp"
-                    />
+                    android:textColor="@color/black" />
 
                 <!--  변동가격   -->
                 <TextView
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@color/black"
-                    android:layout_marginStart="7dp" />
+                    android:layout_marginEnd="7dp" />
             </LinearLayout>
 
             <!--  거래대금   -->
@@ -101,8 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:layout_marginStart="7dp" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
     </RelativeLayout>

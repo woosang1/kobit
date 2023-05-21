@@ -21,7 +21,6 @@ class ItemVerticalDecorator(
             left = startMargin
             right = endMargin
 
-
             when {
                 state.itemCount == 1 -> {
                     top = firstTopMargin

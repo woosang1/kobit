@@ -1,5 +1,6 @@
 package com.example.kobit.componet
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,7 +11,7 @@ import com.example.kobit.R
 import com.example.kobit.application.KobitApplication
 import com.example.kobit.databinding.LayoutCoinInfoBinding
 import com.example.kobit.main.MainViewModel
-import com.example.kobit.model.CoinDataModel
+import com.example.kobit.model.CoinInfoModel
 
 
 class CoinInfoViewHolder(
@@ -19,27 +20,27 @@ class CoinInfoViewHolder(
     private val mainViewModel: MainViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(data: CoinDataModel.Data) {
+    fun onBind(data: CoinInfoModel.Data) {
         binding.data = data
         binding.isLike.setOnClickListener {
             data.isLike = !data.isLike
+            binding.data = data
             changeLike(isLike = data.isLike, data = data)
+            binding.executePendingBindings()
         }
         binding.executePendingBindings()
     }
 
-    private fun changeLike(isLike: Boolean, data: CoinDataModel.Data) {
+    private fun changeLike(isLike: Boolean, data: CoinInfoModel.Data) {
         // 선택됨
         if (isLike) {
-            mainViewModel.addModelToRoom(data)
-            binding.isLike.setBackgroundResource(R.drawable.is_like_true)
             mainViewModel.callShowToast(KobitApplication.getGlobalContext().resources.getString(R.string.like_toast))
+            mainViewModel.addModelToRoom(data)
         }
         // 선택안됨.
         else {
-            mainViewModel.deleteModelAndRefresh(data.title)
-            binding.isLike.setBackgroundResource(R.drawable.is_like_false)
             mainViewModel.callShowToast(KobitApplication.getGlobalContext().resources.getString(R.string.like_cancel_toast))
+            mainViewModel.deleteModelAndRefresh(data.title)
         }
     }
 }

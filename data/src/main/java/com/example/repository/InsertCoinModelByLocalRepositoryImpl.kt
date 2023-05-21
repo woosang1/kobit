@@ -3,9 +3,9 @@ package com.example.repository
 import com.example.db.LikeCoinDao
 import com.example.db.LikeCoinModel
 
-class InsertCoinModelInRoomRepositoryImpl(
+class InsertCoinModelByLocalRepositoryImpl(
     private val likeCoinDao: LikeCoinDao,
-    ) : InsertCoinModelInRoomRepository {
+    ) : InsertCoinModelByLocalRepository {
 
     override fun insertData(data: com.example.model.LikeCoinModel) {
         likeCoinDao.insert(

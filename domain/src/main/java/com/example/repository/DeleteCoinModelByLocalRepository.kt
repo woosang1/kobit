@@ -1,5 +1,5 @@
 package com.example.repository
 
-interface DeleteCoinModelInRoomRepository {
+interface DeleteCoinModelByLocalRepository {
     fun deleteModel(title: String)
 }

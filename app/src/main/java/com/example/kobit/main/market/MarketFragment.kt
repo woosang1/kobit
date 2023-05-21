@@ -12,7 +12,7 @@ import com.example.kobit.databinding.FragmentMarketBinding
 import com.example.kobit.utils.extension.dpToPixel
 import androidx.lifecycle.Observer
 import com.example.kobit.main.MainViewModel
-import com.example.kobit.model.CoinDataModel
+import com.example.kobit.model.CoinInfoModel
 import com.example.kobit.utils.ItemVerticalDecorator
 import com.example.kobit.utils.extension.getNumber
 import com.example.kobit.views.MenuClickListener
@@ -124,13 +124,13 @@ class MarketFragment(
         with(mainViewModel) {
             coinDataLiveData.observe(viewLifecycleOwner, Observer {
                 if (binding.recyclerView.adapter is CoinInfoAdapter) {
-                    addData(it as ArrayList<CoinDataModel>)
+                    addData(it as ArrayList<CoinInfoModel>)
                 }
             })
         }
     }
 
-    private fun addData(value: ArrayList<CoinDataModel>) {
+    private fun addData(value: ArrayList<CoinInfoModel>) {
         (binding.recyclerView.adapter as CoinInfoAdapter).addData(value)
     }
 }

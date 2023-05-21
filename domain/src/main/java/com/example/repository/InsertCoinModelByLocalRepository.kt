@@ -2,6 +2,6 @@ package com.example.repository
 
 import com.example.model.LikeCoinModel
 
-interface InsertCoinModelInRoomRepository {
+interface InsertCoinModelByLocalRepository {
     fun insertData(likeCoinModel: LikeCoinModel)
 }
