@@ -2,8 +2,9 @@ package com.example.repository
 
 import com.example.db.LikeCoinDao
 import com.example.model.mappingLikeCoinModelList
+import javax.inject.Inject
 
-class GetAllCoinModelByLocalRepositoryImpl(
+class GetAllCoinModelByLocalRepositoryImpl @Inject constructor(
     private val likeCoinDao: LikeCoinDao
 ) : GetAllCoinModelByLocalRepository {
 

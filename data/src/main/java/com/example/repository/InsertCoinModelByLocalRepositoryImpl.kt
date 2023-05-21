@@ -2,10 +2,11 @@ package com.example.repository
 
 import com.example.db.LikeCoinDao
 import com.example.db.LikeCoinModel
+import javax.inject.Inject
 
-class InsertCoinModelByLocalRepositoryImpl(
-    private val likeCoinDao: LikeCoinDao,
-    ) : InsertCoinModelByLocalRepository {
+class InsertCoinModelByLocalRepositoryImpl @Inject constructor(
+    private val likeCoinDao: LikeCoinDao
+) : InsertCoinModelByLocalRepository {
 
     override fun insertData(data: com.example.model.LikeCoinModel) {
         likeCoinDao.insert(

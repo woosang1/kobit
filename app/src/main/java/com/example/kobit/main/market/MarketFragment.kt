@@ -102,7 +102,14 @@ class MarketFragment(
                 }
             }
             // 내림차순
-            else modelList.sortByDescending { it.data.title }
+            else {
+                when(menuClick){
+                    MenuClick.TITLE -> modelList.sortByDescending { it.data.title }
+                    MenuClick.PRICE -> modelList.sortByDescending { it.data.last.getNumber() }
+                    MenuClick.TIME -> modelList.sortByDescending { it.data.changePercent.getNumber() }
+                    MenuClick.MONEY -> modelList.sortByDescending { it.data.volume.getNumber() }
+                }
+            }
             adapter.notifyDataSetChanged()
         }
     }

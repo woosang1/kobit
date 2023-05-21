@@ -72,6 +72,7 @@ fun String.makeComma() : String {
 }
 
 fun String.getNumber() : Double {
+    val isExistMinus = this.contains("-")
     val amountWithoutCurrency = this.replace("[^\\d.]".toRegex(), "")
-    return amountWithoutCurrency.toDoubleOrNull() ?: 0.0
+    return (amountWithoutCurrency.toDoubleOrNull() ?: 0.0) * (if (isExistMinus) -1 else 1)
 }

@@ -12,6 +12,9 @@ import com.example.model.CoinListModel
 import com.example.repository.DeleteCoinModelByLocalRepository
 import com.example.repository.GetAllCoinModelByLocalRepository
 import com.example.repository.InsertCoinModelByLocalRepository
+import com.example.usecase.DeleteCoinModelByLocalUseCase
+import com.example.usecase.GetAllCoinModelByLocalUseCase
+import com.example.usecase.InsertCoinModelByLocalUseCase
 import com.example.usecase.MarketDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,9 +24,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val marketDetailUseCase: MarketDetailUseCase,
-    private val getAllCoinModelByLocalRepository: GetAllCoinModelByLocalRepository,
-    private val insertCoinModelByLocalRepository: InsertCoinModelByLocalRepository,
-    private val deleteCoinModelByLocalRepository: DeleteCoinModelByLocalRepository
+    private val getAllCoinModelByLocalUseCase: GetAllCoinModelByLocalUseCase,
+    private val insertCoinModelByLocalUseCase: InsertCoinModelByLocalUseCase,
+    private val deleteCoinModelByLocalUseCase: DeleteCoinModelByLocalUseCase
 ) : ViewModel() {
 
     // 코인 정보 조회 성공 (server)
@@ -90,7 +93,7 @@ class MainViewModel @Inject constructor(
 
     fun addModelToRoom(data: CoinInfoModel.Data) {
         viewModelScope.launch(Dispatchers.IO) {
-            insertCoinModelByLocalRepository.insertData(
+            insertCoinModelByLocalUseCase.insertData(
                 com.example.model.LikeCoinModel(
                     title = data.title,
                     timestamp = data.timestamp,
@@ -111,7 +114,7 @@ class MainViewModel @Inject constructor(
 
     fun getModelToRoom() {
         viewModelScope.launch(Dispatchers.IO) {
-            val likeCoinModelList = getAllCoinModelByLocalRepository.getAllData()
+            val likeCoinModelList = getAllCoinModelByLocalUseCase.getAllData()
             val coinDataModelList = makeCoinDataModelListToLikeCoinModelList(likeCoinModelList)
             _coinDataByLocalLiveData.postValue(coinDataModelList)
         }
@@ -119,7 +122,7 @@ class MainViewModel @Inject constructor(
 
     fun deleteModelAndRefresh(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            deleteCoinModelByLocalRepository.deleteModel(title)
+            deleteCoinModelByLocalUseCase.deleteModel(title)
             getModelToRoom()
         }
     }
