@@ -3,7 +3,7 @@ package com.example.model
 import com.example.model.rp.RpDetailAllModel
 import com.example.model.rp.RpDetailModel
 
-fun RpDetailAllModel.mapperToConListModel() : CoinListModel{
+fun RpDetailAllModel.mapperToConListModel(): CoinListModel {
     return CoinListModel(
         dataList = ArrayList<CoinListModel.Item>().apply {
             aaveKrw.let { it ->
@@ -2084,7 +2084,7 @@ fun RpDetailAllModel.mapperToConListModel() : CoinListModel{
     )
 }
 
-fun RpDetailModel.mapperToConListModel(title: String) : CoinListModel{
+fun RpDetailModel.mapperToConListModel(title: String): CoinListModel {
     return CoinListModel(
         dataList = ArrayList<CoinListModel.Item>().apply {
             add(
@@ -2105,3 +2105,26 @@ fun RpDetailModel.mapperToConListModel(title: String) : CoinListModel{
         }
     )
 }
+
+
+fun List<com.example.db.LikeCoinModel>.mappingLikeCoinModelList(): ArrayList<LikeCoinModel> {
+    return ArrayList<LikeCoinModel>().apply {
+        this@mappingLikeCoinModelList.forEach {
+            add(LikeCoinModel(
+                title = it.title,
+                timestamp = it.timestamp,
+                last = it.last,
+                open = it.open,
+                bid = it.bid,
+                ask = it.ask,
+                low = it.low,
+                high = it.high,
+                volume = it.volume,
+                change = it.change,
+                changePercent = it.changePercent,
+                isLike = it.isLike
+            ))
+        }
+    }
+}
+

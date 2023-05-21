@@ -12,6 +12,9 @@ import com.example.kobit.utils.extension.makeComma
 import com.example.kobit.utils.extension.makePrice
 import com.example.kobit.utils.extension.roundData
 import com.example.model.CoinListModel
+import com.example.repository.DeleteCoinModelInRoomRepository
+import com.example.repository.GetAllCoinModelInRoomRepository
+import com.example.repository.InsertCoinModelInRoomRepository
 import com.example.usecase.MarketDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +24,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val marketDetailUseCase: MarketDetailUseCase,
-    private val likeCoinDao: LikeCoinDao,
+    private val getAllCoinModelInRoomRepository: GetAllCoinModelInRoomRepository,
+    private val insertCoinModelInRoomRepository: InsertCoinModelInRoomRepository,
+    private val deleteCoinModelInRoomRepository: DeleteCoinModelInRoomRepository
 ) : ViewModel() {
 
     // 코인 정보 조회 성공 (server)
@@ -30,7 +35,8 @@ class MainViewModel @Inject constructor(
 
     // 코인 정보 조회 성공 (room)
     private val _coinDataByRoomLiveData = MutableLiveData<ArrayList<CoinDataModel.LikeModel>>()
-    val coinDataByRoomLiveData: LiveData<ArrayList<CoinDataModel.LikeModel>> = _coinDataByRoomLiveData
+    val coinDataByRoomLiveData: LiveData<ArrayList<CoinDataModel.LikeModel>> =
+        _coinDataByRoomLiveData
 
     private val _showToast = MutableLiveData<String>()
     val showToast: LiveData<String> = _showToast
@@ -38,7 +44,6 @@ class MainViewModel @Inject constructor(
     fun getMarketDetailAll() {
         marketDetailUseCase.getDetailAll(
             success = {
-                Log.i("aa", "vm getMarketDetailAll success - : ${it.toString()}")
                 _coinDataLiveData.postValue(makeMarketModel(it))
             },
             fail = {
@@ -51,7 +56,6 @@ class MainViewModel @Inject constructor(
         marketDetailUseCase.getDetail(
             value = value,
             success = {
-                Log.i("aa", "vm getMarketDetailAll success - : ${it.toString()}")
                 _coinDataLiveData.postValue(makeMarketModel(it))
             },
             fail = {
@@ -60,7 +64,7 @@ class MainViewModel @Inject constructor(
         )
     }
 
-    fun callShowToast(value : String){
+    fun callShowToast(value: String) {
         _showToast.postValue(value)
     }
 
@@ -90,8 +94,8 @@ class MainViewModel @Inject constructor(
 
     fun addModelToRoom(data: CoinDataModel.Data) {
         viewModelScope.launch(Dispatchers.IO) {
-            likeCoinDao.insert(
-                LikeCoinModel(
+            insertCoinModelInRoomRepository.insertData(
+                com.example.model.LikeCoinModel(
                     title = data.title,
                     timestamp = data.timestamp,
                     last = data.last,
@@ -111,20 +115,20 @@ class MainViewModel @Inject constructor(
 
     fun getModelToRoom() {
         viewModelScope.launch(Dispatchers.IO) {
-            val likeCoinModelList = likeCoinDao.selectAll()
+            val likeCoinModelList = getAllCoinModelInRoomRepository.getAllData()
             val coinDataModelList = makeCoinDataModelListToLikeCoinModelList(likeCoinModelList)
             _coinDataByRoomLiveData.postValue(coinDataModelList)
         }
     }
 
-    fun deleteModelAndRefresh(title: String){
+    fun deleteModelAndRefresh(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            likeCoinDao.deleteItem(title)
+            deleteCoinModelInRoomRepository.deleteModel(title)
             getModelToRoom()
         }
     }
 
-    private fun makeCoinDataModelListToLikeCoinModelList(likeCoinModelList : List<LikeCoinModel>) : ArrayList<CoinDataModel.LikeModel> {
+    private fun makeCoinDataModelListToLikeCoinModelList(likeCoinModelList: ArrayList<com.example.model.LikeCoinModel>): ArrayList<CoinDataModel.LikeModel> {
         return ArrayList<CoinDataModel.LikeModel>().apply {
             likeCoinModelList.forEach {
                 add(

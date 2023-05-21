@@ -44,9 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setSearchBar() {
         binding.searchBar.setOnEditorActionListener {
-            Log.i("aa", "binding.searchBar.setListener call")
             val keyword = binding.searchBar.getText()
-            Log.i("aa", "keyword : ${keyword}")
             if (keyword.isEmpty() || keyword.isBlank()) {
                 mainViewModel.getMarketDetailAll()
             } else {
