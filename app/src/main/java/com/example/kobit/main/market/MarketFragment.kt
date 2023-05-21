@@ -11,6 +11,7 @@ import com.example.kobit.componet.CoinInfoAdapter
 import com.example.kobit.databinding.FragmentMarketBinding
 import com.example.kobit.utils.extension.dpToPixel
 import androidx.lifecycle.Observer
+import com.example.kobit.MenuClick
 import com.example.kobit.main.MainViewModel
 import com.example.kobit.model.CoinInfoModel
 import com.example.kobit.utils.ItemVerticalDecorator
@@ -67,53 +68,43 @@ class MarketFragment(
     private fun setListener() {
         binding.infoTitleLayout.setClickListener(
             menuClickListener = object : MenuClickListener {
-                @SuppressLint("NotifyDataSetChanged")
                 override fun titleClick(value: Boolean) {
-                    if (binding.recyclerView.adapter is CoinInfoAdapter) {
-                        val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
-                        val modelList = adapter.getModelList()
-                        // 오름차순
-                        if (value) modelList.sortBy { it.data.title }
-                        // 내림차순
-                        else modelList.sortByDescending { it.data.title }
-                        adapter.notifyDataSetChanged()
-                    }
+                    sortListByMenuClickType(menuClick = MenuClick.TITLE, value = value)
                 }
 
-                @SuppressLint("NotifyDataSetChanged")
                 override fun priceClick(value: Boolean) {
-                    val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
-                    val modelList = adapter.getModelList()
-                    // 오름차순
-                    if (value) modelList.sortBy { it.data.last.getNumber() }
-                    // 내림차순
-                    else modelList.sortByDescending { it.data.last.getNumber() }
-                    adapter.notifyDataSetChanged()
+                    sortListByMenuClickType(menuClick = MenuClick.PRICE, value = value)
                 }
 
-                @SuppressLint("NotifyDataSetChanged")
                 override fun timeClick(value: Boolean) {
-                    val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
-                    val modelList = (binding.recyclerView.adapter as CoinInfoAdapter).getModelList()
-                    // 오름차순
-                    if (value) modelList.sortBy { it.data.changePercent.getNumber() }
-                    // 내림차순
-                    else modelList.sortByDescending { it.data.changePercent.getNumber() }
-                    adapter.notifyDataSetChanged()
+                    sortListByMenuClickType(menuClick = MenuClick.TIME, value = value)
                 }
 
-                @SuppressLint("NotifyDataSetChanged")
                 override fun moneyClick(value: Boolean) {
-                    val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
-                    val modelList = (binding.recyclerView.adapter as CoinInfoAdapter).getModelList()
-                    // 오름차순
-                    if (value) modelList.sortBy { it.data.volume.getNumber() }
-                    // 내림차순
-                    else modelList.sortByDescending { it.data.volume.getNumber() }
-                    adapter.notifyDataSetChanged()
+                    sortListByMenuClickType(menuClick = MenuClick.MONEY, value = value)
                 }
             }
         )
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun sortListByMenuClickType(menuClick: MenuClick, value: Boolean){
+        if (binding.recyclerView.adapter is CoinInfoAdapter) {
+            val adapter = (binding.recyclerView.adapter as CoinInfoAdapter)
+            val modelList = adapter.getModelList()
+            // 오름차순
+            if (value) {
+                when(menuClick){
+                    MenuClick.TITLE -> modelList.sortBy { it.data.title }
+                    MenuClick.PRICE -> modelList.sortBy { it.data.last.getNumber() }
+                    MenuClick.TIME -> modelList.sortBy { it.data.changePercent.getNumber() }
+                    MenuClick.MONEY -> modelList.sortBy { it.data.volume.getNumber() }
+                }
+            }
+            // 내림차순
+            else modelList.sortByDescending { it.data.title }
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun getData() {
